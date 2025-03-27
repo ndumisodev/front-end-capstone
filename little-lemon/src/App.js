@@ -12,8 +12,6 @@ function App() {
       <Nav />
       <Main />
       <Footer />
-      
-      <h1>hello world</h1>
       </>
   );
 }
