@@ -1,8 +1,30 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Nav from "./Navi";
+import BookingPage from "../pages/BookingPage";
+import Homepage from "../pages/Homepage";
+import Footer from "./Footer";
+import Header from "./Header";
 
 function Main() {
     return(<main>
-        <section class="promo-banner">
+        {/* <Router>
+            <Routes> 
+                <Route path="/" element={<Homepage />}></Route>
+                <Route path="/booking" element={<BookingPage />}></Route>
+            </Routes>
+        </Router> */}
+        </main>)
+}
+
+export default Main;
+
+
+
+
+
+
+        {/* <section class="promo-banner">
           <div class="promo-content">
             <div class="promo-text">
               <h1 id="name">Little Lemon</h1>
@@ -14,17 +36,17 @@ function Main() {
               <img src="/3d3cce7a3104bf255ed0e69195e2a157338c1bff.jpg"/>
             </div>
           </div>
-        </section>
+        </section> */}
 
-        <section class="highlight">
+        {/* <section class="highlight">
     <div class="highlight-header">
         <h2>This Week's Specials</h2>
         <button class="menu-button">Online Menu</button>
     </div>
     
-    <div class="specials">
+    <div class="specials"> */}
         {/* <!-- Brochette Card --> */}
-        <div class="special-card">
+        {/* <div class="special-card">
             <img src="/bruchetta.svg" alt="Brochette" />
             <div class="dish-header">
               <span class="dish-name"><h3>Bruchette</h3></span>
@@ -32,10 +54,10 @@ function Main() {
             </div>
             <p>Our Bruchette is made from grilled bread that has been smeared with garlic and seasoned with salt and olive oil.</p>
             <a href="#" class="order-link">Order a Delivery →</a>
-        </div>
+        </div> */}
 
         {/* <!-- Greek Salad Card --> */}
-        <div class="special-card">
+        {/* <div class="special-card">
             <img src="/greek-salad.jpg" alt="Greek Salad" />
             <div class="dish-header">
               <span class="dish-name"><h3>Greek Salad</h3></span>
@@ -43,10 +65,10 @@ function Main() {
             </div>
             <p>The famous greek salad of crispy lettuce, peppers, olives and Our Chicago style feta cheese, garnished with cruncy garlic and rosemary croutons.</p>
             <a href="#" class="order-link">Order a Delivery →</a>
-        </div>
+        </div> */}
 
         {/* <!-- Lemon Dessert Card --> */}
-        <div class="special-card">
+        {/* <div class="special-card">
             <img src="lemon-dessert.jpg" alt="Lemon Dessert" />
             <div class="dish-header">
               <span class="dish-name"><h3>Lemon Dessert</h3></span>
@@ -54,11 +76,11 @@ function Main() {
             </div>
             <p>This comes straight from grandms's recipe book, every last ingredient has been sourced and is as sunthetic as can be imagined.</p>
             <a href="#" class="order-link">Order a Delivery →</a>
-        </div>
-    </div>
-</section>
+        </div> */}
+    {/* </div>
+</section> */}
 
-<section class="testimonials">
+{/* <section class="testimonials">
     <h2>What Our Customers Say</h2>
     <div class="testimonial-container">
         <div class="testimonial-card">
@@ -105,9 +127,9 @@ function Main() {
             </p>
         </div>
     </div>
-</section>
+</section> */}
 
-        <section class="about">
+        {/* <section class="about">
             <div class="about-text">
                 <h2>About Little Lemon</h2>
                 <p>
@@ -120,9 +142,5 @@ function Main() {
                 <img src="/Mario and Adrian A.jpg" alt="Chef Adrian" class="chef-photo" />
                 <img src="/Mario and Adrian b.jpg" alt="Chef Maria" class="chef-photo" />
             </div>
-        </section>
+        </section> */}
 
-    </main>)
-}
-
-export default Main;

@@ -4,8 +4,7 @@
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: 0.01fr 1fr 0.2fr; 
     grid-template-areas: "empty1 empty2 Header Header Nav Nav Nav Nav Nav Nav empty11 empty12"
-                        /* "empty1 empty2 Nav Nav Nav Nav Nav Nav empty11 empty12" */
-                        "empty1 empty2 Main Main Main Main Main Main Main Main empty11 empty12"
+                        "empty1 empty2 main main main main main main main main empty11 empty12"
                         "empty1 empty2 Footer Footer Footer Footer Footer Footer Footer Footer empty11 empty12";
     grid-gap: 0;
 }
@@ -56,8 +55,8 @@ a{
     text-decoration: underline;
 }
 
-Main {
-    grid-area: Main;
+main {
+    grid-area: main;
     /* background-color: #99BC85; */
 }
 
@@ -539,6 +538,72 @@ img{
 
 
 
+.booking-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom, rgba(73, 94, 87, 0.8) 80%, rgba(255, 255, 255, 0.9) 10%);
+    backdrop-filter: blur(8px); 
+
+    /* background: linear-gradient(to bottom, #495e57 80%, white 10%); */
+    /* background-color:rgba(244, 206, 20, 0.2); */
+
+    padding: 1rem;
+  }
+  
+  .booking-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 85%;
+    max-width: 1200px;
+    gap: 2rem;
+  }
+  
+  .booking-text {
+    flex: 1;
+    max-width: 500px;
+    color: #edefee;
+  }
+  
+  #booking-title {
+    font-family: "Markazi Text", serif;
+    font-size: 6rem;
+    color: #f4ce14;
+    margin: 0;
+  }
+  
+  #booking-subtitle {
+    font-family: "Karla", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  
+  .booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 400px;
+  }
+  
+  .booking-pic {
+    flex: 1;
+    max-width: 600px;
+  }
+  
+  .booking-pic img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
+  }
+  
+  
+
+
+
+
 @media only screen and (max-width: 1000px){
     #root {
         /* display: grid;
@@ -547,7 +612,7 @@ img{
         /* grid-template-rows: 0.1fr 1fr 0.2fr;  */
         grid-template-areas: "Header Header Nav Nav Nav Nav Nav Nav"
                             /* "empty1 empty2 Nav Nav Nav Nav Nav Nav empty11 empty12" */
-                            "Main Main Main Main Main Main Main Main"
+                            "main main main main main main main main"
                             "Footer Footer Footer Footer Footer Footer Footer Footer";
         grid-gap: 10px;
     }
@@ -565,7 +630,7 @@ img{
         grid-template-columns: repeat(4, 1fr);
         grid-template-areas: 
             "Header Nav"
-            "Main"
+            "main"
             "Footer Footer";
         gap: 10px; /* Reduce gap for smaller screens */
     }
