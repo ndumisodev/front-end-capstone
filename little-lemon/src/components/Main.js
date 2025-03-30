@@ -1,50 +1,53 @@
 import React, { useReducer, useEffect } from "react";
 import BookingPage from "../pages/BookingPage";
+import { fetchAPI, submitAPI } from './api.js';
+import { useNavigate } from "react-router-dom"; 
 
 
-// Function to generate available times based on selected date
-const initializeTimes = () => ["18:00", "19:00", "20:00", "21:00"];
-
-// Reducer to update times when date changes
+// Reducer to update available times when date changes
 const updateTimes = (state, action) => {
-    switch (action.type) {
-      case "UPDATE":
-        if (!action.payload) {
-            console.error("ERROR: No date received in updateTimes action!");
-            return state;
-          }
-        const selectedDate = action.payload;
-
-        console.log("✅ Selected Date:", selectedDate);// Check if date is received
-        console.log("Selected Date:", selectedDate); // Debugging log
-  
-        // Example: Different times for different days (modify logic as needed)
-        const newTimes =
-          selectedDate.getDay() === 6 // Saturday
-            ? ["17:00", "18:00", "19:00"]
-            : ["18:00", "19:00", "20:00", "21:00"];
-  
-            console.log("✅ Updated Available Times:", newTimes); // Check new times
-        return [...newTimes]; // Ensure a new state is returned
-  
-      default:
+  switch (action.type) {
+    case "UPDATE":
+      if (!action.payload) {
+        console.error("ERROR: No date received in updateTimes action!");
         return state;
+      }
+
+      const selectedDate = action.payload;
+      console.log("✅ Selected Date:", selectedDate);
+
+      return fetchAPI(selectedDate) || []; // ✅ Fix: Ensure fetchAPI returns an array
+
+    default:
+      return state;
+  }
+};
+
+
+function Main() {
+  const [availableTimes, dispatch] = useReducer(updateTimes, []);
+  const navigate = useNavigate(); // Initialize navigate
+
+  // Submit form function
+  const submitForm = (formData) => {
+    const isSubmitted = submitAPI(formData);
+    if (isSubmitted) {
+      navigate("/confirmed", { state: formData }); // Navigate to the confirmation page if submission is successful
+    } else {
+      console.error("Booking submission failed.");
     }
   };
 
-function Main() {
-  const initialTimes = initializeTimes();
-  const [availableTimes, dispatch] = useReducer(updateTimes, initialTimes);
+  // Fetch available times on component mount
+  useEffect(() => {
+    const today = new Date();
+    dispatch({ type: "UPDATE", payload: today });
+  }, []);
 
-  console.log("🎯 Initial Available Times:", availableTimes);
-
-  return <BookingPage availableTimes={availableTimes} updateTimes={dispatch} />;
+  return <BookingPage availableTimes={availableTimes} submitForm={submitForm} />;
 }
 
 export default Main;
-
-
-
 
 
 

@@ -4,7 +4,7 @@ import { faFacebook, faInstagram, faPinterest } from '@fortawesome/free-brands-s
 
 function Footer(){
     return (
-        <footer class="footer">
+        <footer className="footer">
     <div class="footer-container">
         {/* <!-- Logo --> */}
         <div class="footer-logo">
@@ -12,7 +12,7 @@ function Footer(){
         </div>
 
         {/* <!-- Doormat Navigation --> */}
-        <nav class="footer-nav">
+        <nav className="footer-nav">
             <h3>Quick Links</h3>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -25,7 +25,7 @@ function Footer(){
         </nav>
 
         {/* <!-- Contact Details --> */}
-        <div class="footer-contact">
+        <div className="footer-contact">
             <h3>Contact Us</h3>
             <p>123 Mediterranean St, Chicago, IL</p>
             <p>Email: contact@littlelemon.com</p>
@@ -33,7 +33,7 @@ function Footer(){
         </div>
 
         {/* <!-- Social Media Links --> */}
-        <div class="footer-social">
+        <div className="footer-social">
             <h3>Follow Us</h3>
             <a href="https://facebook.com" target="_blank" className="social-link"><FontAwesomeIcon icon={faFacebook} /><img src="/facebook-icon.png" alt="Facebook" /></a>
         <a href="https://instagram.com" target="_blank" className="social-link">
