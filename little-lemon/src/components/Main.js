@@ -1,23 +1,51 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Nav from "./Navi";
+import React, { useReducer, useEffect } from "react";
 import BookingPage from "../pages/BookingPage";
-import Homepage from "../pages/Homepage";
-import Footer from "./Footer";
-import Header from "./Header";
+
+
+// Function to generate available times based on selected date
+const initializeTimes = () => ["18:00", "19:00", "20:00", "21:00"];
+
+// Reducer to update times when date changes
+const updateTimes = (state, action) => {
+    switch (action.type) {
+      case "UPDATE":
+        if (!action.payload) {
+            console.error("ERROR: No date received in updateTimes action!");
+            return state;
+          }
+        const selectedDate = action.payload;
+
+        console.log("✅ Selected Date:", selectedDate);// Check if date is received
+        console.log("Selected Date:", selectedDate); // Debugging log
+  
+        // Example: Different times for different days (modify logic as needed)
+        const newTimes =
+          selectedDate.getDay() === 6 // Saturday
+            ? ["17:00", "18:00", "19:00"]
+            : ["18:00", "19:00", "20:00", "21:00"];
+  
+            console.log("✅ Updated Available Times:", newTimes); // Check new times
+        return [...newTimes]; // Ensure a new state is returned
+  
+      default:
+        return state;
+    }
+  };
 
 function Main() {
-    return(<main>
-        {/* <Router>
-            <Routes> 
-                <Route path="/" element={<Homepage />}></Route>
-                <Route path="/booking" element={<BookingPage />}></Route>
-            </Routes>
-        </Router> */}
-        </main>)
+  const initialTimes = initializeTimes();
+  const [availableTimes, dispatch] = useReducer(updateTimes, initialTimes);
+
+  console.log("🎯 Initial Available Times:", availableTimes);
+
+  return <BookingPage availableTimes={availableTimes} updateTimes={dispatch} />;
 }
 
 export default Main;
+
+
+
+
 
 
 

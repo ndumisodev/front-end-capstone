@@ -631,13 +631,13 @@ img{
   }
   
   .social-link {
-      color: #333; /* Icon color */
+      color: #edefee; /* Icon color */
       font-size: 24px; /* Icon size */
       text-decoration: none; /* Remove underline */
   }
   
   .social-link:hover {
-      color: #007bff; /* Change color on hover */
+      color: #f4ce14; /* Change color on hover */
   }
 
 @media only screen and (max-width: 480px) {

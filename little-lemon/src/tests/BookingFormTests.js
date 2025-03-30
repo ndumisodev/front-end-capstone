@@ -1,14 +1,4 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
-
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
-
-
-import { initializeTimes, updateTimes } from "./components/Main"; // Adjust the path
+import { initializeTimes, updateTimes } from "../components/Main"; // Adjust the path
 
 test("initializeTimes returns the correct initial times", () => {
     const initialTimes = initializeTimes();

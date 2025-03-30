@@ -5,16 +5,18 @@ function Nav() {
 
     const location = useLocation();
 
-    const handleAboutClick = () => {
-        if (location.pathname === '/') {
-            const aboutSection = document.querySelector('.about');
-            if (aboutSection) {
-                aboutSection.scrollIntoView({ behavior: 'smooth' });
-            }
-        } else {
-            window.location.href = "/#about";
-        }
-    };
+  const handleAboutClick = (e) => {
+    e.preventDefault();
+
+    if (location.pathname === "/") {
+      const aboutSection = document.querySelector(".about");
+      if (aboutSection) {
+        aboutSection.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      window.location.href = "/#about"; // Redirect if not on homepage
+    }
+  };
 
 
 

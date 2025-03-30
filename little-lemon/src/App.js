@@ -6,6 +6,9 @@ import Nav from './components/Navi';
 import Footer from './components/Footer';
 import Homepage from './pages/Homepage';
 import BookingPage from './pages/BookingPage';
+import Main from './components/Main';
+// import ConfirmedBooking from './pages/ConfirmedBooking';
+
 
 function App() {
   return (
@@ -14,7 +17,9 @@ function App() {
       <Nav />
       <Routes> 
       <Route path="/" element={<main><Homepage /></main>} />
-      <Route path="/reservations" element={<main><BookingPage /></main>} />
+      <Route path="/reservations" element={<main><Main /></main>} />
+      {/* <Route path="/confirmed" element={<main><ConfirmedBooking /></main>} /> */}
+
         <Route path="/menu" element={<div>Menu Page</div>} />
         <Route path="/order-online" element={<div>Order Online Page</div>} />
         <Route path="/login" element={<div>Login Page</div>} />
