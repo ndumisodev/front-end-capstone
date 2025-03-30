@@ -1,19 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-function BookingPage({ availableTimes = [], updateTimes, submitForm }) { // Add submitForm to props
+function BookingPage({ availableTimes = [], updateTimes, submitForm }) {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState("");
   const [numDiners, setNumDiners] = useState("2");
   const [occasion, setOccasion] = useState("");
+  const [dateError, setDateError] = useState("");
+  const [timeError, setTimeError] = useState("");
+  const [dinersError, setDinersError] = useState("");
+  const [occasionError, setOccasionError] = useState("");
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
-
-    // Ensure updateTimes is a function before calling it
+    setDateError(!date ? "Please select a date." : "");
     if (typeof updateTimes === "function") {
-      console.log("🔄 Dispatching updateTimes action with:", date);
       updateTimes({ type: "UPDATE", payload: date });
     } else {
       console.error("❌ ERROR: updateTimes is not a function");
@@ -22,14 +24,37 @@ function BookingPage({ availableTimes = [], updateTimes, submitForm }) { // Add 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = {
-      date: selectedDate,
-      time: selectedTime,
-      guests: numDiners,
-      occasion: occasion,
-    };
-    submitForm(formData); // Call submitForm with form data
+    let hasErrors = false;
+
+    if (!selectedDate) {
+      setDateError("Please select a date.");
+      hasErrors = true;
+    }
+    if (!selectedTime) {
+      setTimeError("Please select a time.");
+      hasErrors = true;
+    }
+    if (!numDiners) {
+      setDinersError("Please select the number of diners.");
+      hasErrors = true;
+    }
+    if (!occasion) {
+      setOccasionError("Please select an occasion.");
+      hasErrors = true;
+    }
+
+    if (!hasErrors) {
+      const formData = {
+        date: selectedDate,
+        time: selectedTime,
+        guests: numDiners,
+        occasion: occasion,
+      };
+      submitForm(formData);
+    }
   };
+
+  const isSubmitDisabled = !selectedDate || !selectedTime || !numDiners || !occasion;
 
   return (
     <section className="booking-banner">
@@ -48,7 +73,9 @@ function BookingPage({ availableTimes = [], updateTimes, submitForm }) { // Add 
               minDate={new Date()}
               placeholderText="Select a date"
               id="date"
+              required
             />
+            {dateError && <p className="error">{dateError}</p>}
 
             <fieldset>
               <legend>Number of Diners:</legend>
@@ -59,10 +86,12 @@ function BookingPage({ availableTimes = [], updateTimes, submitForm }) { // Add 
                     value={num}
                     checked={numDiners == num}
                     onChange={(e) => setNumDiners(e.target.value)}
+                    required
                   />
                   {num} {num === 1 ? "person" : "people"}
                 </label>
               ))}
+              {dinersError && <p className="error">{dinersError}</p>}
             </fieldset>
 
             <label htmlFor="time">Select a Time:</label>
@@ -70,6 +99,7 @@ function BookingPage({ availableTimes = [], updateTimes, submitForm }) { // Add 
               value={selectedTime}
               onChange={(e) => setSelectedTime(e.target.value)}
               id="time"
+              required
             >
               <option value="">-- Select Time --</option>
               {availableTimes.length > 0 ? (
@@ -82,22 +112,25 @@ function BookingPage({ availableTimes = [], updateTimes, submitForm }) { // Add 
                 <option disabled>No available times</option>
               )}
             </select>
+            {timeError && <p className="error">{timeError}</p>}
 
             <label htmlFor="occasion">Occasion:</label>
             <select
               value={occasion}
               onChange={(e) => setOccasion(e.target.value)}
               id="occasion"
+              required
             >
               <option value="">-- Select Occasion --</option>
               <option value="Birthday">Birthday</option>
               <option value="Anniversary">Anniversary</option>
             </select>
+            {occasionError && <p className="error">{occasionError}</p>}
 
             <button
               className="cta-button"
               type="submit"
-              disabled={!selectedDate || !selectedTime}
+              disabled={isSubmitDisabled}
             >
               Confirm Reservation
             </button>

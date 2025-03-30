@@ -26,7 +26,7 @@ function ConfirmedBooking() {
         </div>
         <div className="confirmation-pic">
           <img
-            src="/reserve2.jpg" // Replace with your image path
+            src="/reserve2.jpg" 
             alt="Booking Confirmation"
           />
         </div>

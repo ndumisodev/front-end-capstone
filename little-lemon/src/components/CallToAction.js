@@ -25,6 +25,3 @@ function CallToAction() {
 export default CallToAction;
 
 
-<Link to="/reservations" className="cta-button"> 
-            Reserve a Table
-          </Link>

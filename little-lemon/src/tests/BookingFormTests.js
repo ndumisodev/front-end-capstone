@@ -1,8 +1,8 @@
-import { initializeTimes, updateTimes } from "../components/Main"; // Adjust the path
+import { initializeTimes, updateTimes } from "../components/Main"; 
 
 test("initializeTimes returns the correct initial times", () => {
     const initialTimes = initializeTimes();
-    expect(initialTimes).toEqual(["18:00", "19:00", "20:00", "21:00"]); // Adjust the expected value
+    expect(initialTimes).toEqual(["18:00", "19:00", "20:00", "21:00"]); 
   });
 
 
